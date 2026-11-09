@@ -1,10 +1,21 @@
+import { Link, useSearchParams } from "react-router";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const RecipesList = () => {
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const searchRef = useRef(null)
+    const [searchParams, setSearchParams] = useSearchParams();
+    const search = searchParams.get("q") || "";
+    const handleSearch = (e) => {
+        const value = e.target.value;
+        setSearchParams({ q: value }, { replace: true })
+    }
+    useEffect(()=>{
+        searchRef.current.focus();
+    },[])
     useEffect(() => {
         const conectDb = async () => {
             try {
@@ -19,13 +30,17 @@ const RecipesList = () => {
             }
         }
         conectDb();
-    },[])
+    }, [])
+    const lowerSearch = search.toLowerCase();
+    const filtered = recipes.filter(r => r.name.toLowerCase().includes(lowerSearch));
     return <div>
         <h1>מתכונים</h1>
         {(loading || error) && <p>{loading ? "...טוען" : error}</p>}
+        <input type="text" value={search} ref={searchRef} placeholder="חיפוש מתכון (באנגלית)" onChange={handleSearch}/>
         <ul>
-            {recipes.map(r=><li key={r.id}>{r.name}</li>)}
+            {filtered.map(r => <li key={r.id}><Link to={`/recipes/${r.id}`}>{r.name}</Link></li>)}
         </ul>
-    </div>
+        {!(loading || error || filtered.length!=0)&&<p>לא נמצאו מתכונים</p>}
+    </div >
 }
 export default RecipesList;
