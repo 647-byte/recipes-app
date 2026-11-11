@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import About from "./pages/About";
 // ↓ כאן כל אחת מוסיפה את ה־import שלה ↓
+import About from "./pages/About";
 
 export default function App() {
   return (
