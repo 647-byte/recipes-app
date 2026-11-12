@@ -66,11 +66,8 @@ export default function RecipeDetails() {
             ))}
           </ol>
 
-          {/* כפתור למתכון הבא בדיוק לפי דרישת המורה */}
           <div style={{ marginTop: "20px" }}>
-            <Link to={`/recipes/${Number(id) + 1}`}>
-              <button>למתכון הבא</button>
-            </Link>
+            <Link to={`/recipes/${Number(id) + 1}`}>למתכון הבא</Link>
           </div>
         </>
       )}
