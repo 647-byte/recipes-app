@@ -28,9 +28,40 @@ export default function RecipeDetails() {
       });
   }, [id]);
 
+  if (loading) {
+    return <p>טוען...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <div>
-      <h1>מתכון מספר {id}</h1>
+      {recipe && (
+        <>
+          <h1>{recipe.name}</h1>
+          <p>
+            זמן הכנה: {recipe.prepTimeMinutes} דקות | זמן בישול: {recipe.cookTimeMinutes} דקות | 
+            מנות: {recipe.servings} | רמת קושי: {recipe.difficulty}
+          </p>
+          <img src={recipe.image} alt={recipe.name} width="300" />
+          
+          <h3>מצרכים</h3>
+          <ul>
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
+
+          <h3>הוראות הכנה</h3>
+          <ol>
+            {recipe.instructions.map((step, index) => (
+              <li key={index}>{step}</li>
+            ))}
+          </ol>
+        </>
+      )}
     </div>
   );
 }
