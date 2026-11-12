@@ -11,6 +11,7 @@ export default function Layout() {
       <nav style={{ padding: 12, borderBottom: "1px solid #ccc" }}>
         <NavLink to="/" end style={linkStyle}>בית</NavLink>
         <NavLink to="/recipes" style={linkStyle}>מתכונים</NavLink>
+        <NavLink to="/about" style={linkStyle}>אודות</NavLink>
       </nav>
       <main style={{ padding: 16 }}>
         <Outlet />
