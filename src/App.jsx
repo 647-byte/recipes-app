@@ -6,6 +6,9 @@ import NotFound from "./pages/NotFound";
 import RecipesList from "./pages/RecipesList";
 import RecipeDetails from "./pages/RecipeDetails";
 import About from "./pages/About";
+import Login from "./pages/login/Login";
+import Uncontrolled from "./pages/login/uncontrolled";
+import Rhf from "./pages/login/rhf";
 
 export default function App() {
   return (
@@ -16,12 +19,11 @@ export default function App() {
         <Route path="recipes" element={<RecipesList />} />
         <Route path="recipes/:id" element={<RecipeDetails />} />
         <Route path="about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="login/">
-          <Route path="controlled" />
-          <Route path="uncontrolled" />
-          <Route path="rhf"/>
+        <Route path="login" element={<Login/>}>
+          <Route path="uncontrolled" element={<Uncontrolled/>}/>
+          <Route path="rhf" element={<Rhf/>}/>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
