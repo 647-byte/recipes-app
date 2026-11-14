@@ -13,10 +13,15 @@ export default function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         {/* ↓ כאן כל אחת מוסיפה את ה־Route שלה ↓ */}
-        <Route path="recipes" element={<RecipesList/>}/>
+        <Route path="recipes" element={<RecipesList />} />
         <Route path="recipes/:id" element={<RecipeDetails />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="login/">
+          <Route path="controlled" />
+          <Route path="uncontrolled" />
+          <Route path="rhf"/>
+        </Route>
       </Route>
     </Routes>
   );
